@@ -17,8 +17,8 @@ API desenvolvida em NestJS para gerenciamento de caronas entre universitários.
 
 ```bash
 # 1. Clonar o repositório
-git clone https://github.com/SabinoGabriel/SproutUnit.git
-cd SproutUnit
+git clone https://github.com/SabinoGabriel/UniCar.git
+cd UniCar
 
 # 2. Instalar dependências
 npm install
@@ -30,6 +30,12 @@ npx prisma generate
 # 4. Rodar o projeto
 npm run start:dev
 ```
+
+> **Obs:** Certifique-se de criar e configurar seu arquivo `.env` para ajustar as variáveis do banco de dados.  
+> Exemplo básico de `.env`:
+> ```
+> DATABASE_URL="file:./prisma/dev.db"
+> ```
 
 ### Comandos úteis:
 
@@ -63,6 +69,8 @@ npx prisma migrate reset
 
 ## 📋 API Endpoints (Planejados)
 
+> **Atenção:** Os endpoints abaixo estão planejados e podem não estar todos implementados no momento.
+
 ```
 GET    /users          - Listar usuários
 POST   /users          - Criar usuário
@@ -94,13 +102,12 @@ curl -X POST http://localhost:3000/users \
 ## 📁 Estrutura do Projeto
 
 ```
-unicar-api/
 ├── prisma/
 │   ├── schema.prisma    # Definição das tabelas
-│   └── dev.db          # Arquivo do banco SQLite
+│   └── dev.db           # Arquivo do banco SQLite
 ├── src/
-│   ├── app.module.ts   # Módulo principal
-│   └── main.ts         # Arquivo de entrada
+│   ├── app.module.ts    # Módulo principal
+│   └── main.ts          # Arquivo de entrada
 └── README.md
 ```
 
