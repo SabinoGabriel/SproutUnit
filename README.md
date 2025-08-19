@@ -15,6 +15,12 @@ API desenvolvida em NestJS para gerenciamento de caronas entre universitários.
 
 ### Se você está clonando pela primeira vez:
 
+> **Obs:** Certifique-se de criar e configurar seu arquivo `.env` para ajustar as variáveis do banco de dados.  
+> Exemplo básico de `.env`:
+> ```
+> DATABASE_URL="file:./prisma/dev.db"
+> ```
+
 ```bash
 # 1. Clonar o repositório
 git clone https://github.com/SabinoGabriel/UniCar.git
@@ -30,12 +36,6 @@ npx prisma generate
 # 4. Rodar o projeto
 npm run start:dev
 ```
-
-> **Obs:** Certifique-se de criar e configurar seu arquivo `.env` para ajustar as variáveis do banco de dados.  
-> Exemplo básico de `.env`:
-> ```
-> DATABASE_URL="file:./prisma/dev.db"
-> ```
 
 ### Comandos úteis:
 
