@@ -40,6 +40,19 @@ Sprout Unit: Gabriel Sabino, Bruna Campos, Weslley Gabriel, Nicolas Monteiro
    npm run start:dev
    ```
 
+### Comandos úteis:
+
+```bash
+# Rodar em desenvolvimento (com reload automático)
+npm run start:dev
+
+# Ver o banco de dados no navegador
+npx prisma studio
+
+# Reset completo do banco (apaga todos os dados!)
+npx prisma migrate reset
+```
+
 ## 📊 Estrutura do Banco
 
 **Tabela User (Usuários)**
@@ -59,7 +72,7 @@ Sprout Unit: Gabriel Sabino, Bruna Campos, Weslley Gabriel, Nicolas Monteiro
 
 ## 📋 API Endpoints
 
-### Usuários
+### Usuários (`/user`)
 
 - `GET /user`  
   Lista todos os usuários.
@@ -92,7 +105,7 @@ Sprout Unit: Gabriel Sabino, Bruna Campos, Weslley Gabriel, Nicolas Monteiro
 
 ---
 
-### Caronas
+### Caronas (`/ride`)
 
 - `GET /ride`  
   Lista todas as caronas.
@@ -133,6 +146,13 @@ Após rodar `npm run start:dev`, a API estará disponível em:
 `http://localhost:3000`
 
 Você pode testar os endpoints usando Postman, Thunder Client ou comandos `curl`.
+
+### Exemplo de criação de usuário:
+```bash
+curl -X POST http://localhost:3000/user \
+  -H "Content-Type: application/json" \
+  -d '{"name": "João Silva", "email": "joao@uni.edu", "phone": "11999999999"}'
+```
 
 ## 📁 Estrutura do Projeto
 
