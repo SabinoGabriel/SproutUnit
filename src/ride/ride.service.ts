@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { CreateRideDto } from './dto/create-ride.dto';
 import { UpdateRideDto } from './dto/update-ride.dto';
 import { PrismaService } from '../prisma/prisma.service';
@@ -7,8 +7,13 @@ import { PrismaService } from '../prisma/prisma.service';
 export class RideService {
   constructor(private prisma: PrismaService) {}
 
-  create(createRideDto: CreateRideDto) {
+  async create(createRideDto: CreateRideDto) {
     const { date, ...restOfData } = createRideDto;
+    const userId = createRideDto.userId;
+    const exist = await this.prisma.user.findUnique({ where: { id: userId } });
+    if (!exist) {
+      throw new NotFoundException('Usuário não encontrado');
+    }
     return this.prisma.ride.create({
       data: {
         ...restOfData,
@@ -34,6 +39,19 @@ export class RideService {
   }
 
   update(id: number, updateRideDto: UpdateRideDto) {
+    if ('id' in updateRideDto) {
+      return {
+        message: 'Não é possível alterar o responsável pela viagem',
+        error: 'void',
+        // eslint-disable-next-line prettier/prettier
+        statusCode: 200
+      };
+    }
+    if ('userId' in updateRideDto) {
+      throw new BadRequestException(
+        'Não é possível alterar o responsável pela viagem',
+      );
+    }
     if (updateRideDto.date) {
       const { date, ...restOfData } = updateRideDto;
       return this.prisma.ride.update({
