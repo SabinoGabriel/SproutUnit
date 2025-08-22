@@ -41,7 +41,7 @@ export class RideService {
   update(id: number, updateRideDto: UpdateRideDto) {
     if ('id' in updateRideDto) {
       return {
-        message: 'Não é possível alterar o responsável pela viagem',
+        message: 'Não é possível alterar o ID da viagem',
         error: 'void',
         // eslint-disable-next-line prettier/prettier
         statusCode: 200
