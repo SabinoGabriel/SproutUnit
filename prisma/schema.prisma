@@ -14,22 +14,22 @@ model User {
   phone     String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  
+
   // Relacionamento: um usuário pode ter várias caronas
-  rides     Ride[]
+  rides Ride[]
 }
 
 model Ride {
-  id          Int      @id @default(autoincrement())
-  origin      String
-  destination String
-  date        DateTime
+  id             Int      @id @default(autoincrement())
+  origin         String
+  destination    String
+  date           DateTime
   availableSeats Int
-  price       Float?
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  
+  price          Float?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
   // Relacionamento: uma carona pertence a um usuário
-  userId      Int
-  user        User     @relation(fields: [userId], references: [id])
+  userId Int
+  user   User @relation(fields: [userId], references: [id])
 }
