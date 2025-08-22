@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, ParseIntPipe } from '@nestjs/common';
 import { RideService } from './ride.service';
 import { CreateRideDto } from './dto/create-ride.dto';
 import { UpdateRideDto } from './dto/update-ride.dto';
@@ -20,6 +20,11 @@ export class RideController {
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.rideService.findOne(+id);
+  }
+
+  @Get('/getByUserId/:userId')
+  findByUserId(@Param('userId', ParseIntPipe) userId: number) {
+    return this.rideService.findByUserId(userId);
   }
 
   @Patch(':id')

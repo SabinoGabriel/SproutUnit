@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -22,6 +22,9 @@ export class UserService {
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {
+    if ('id' in updateUserDto) {
+      throw new BadRequestException('Não é permitido alterar a chave');
+    }
     return this.prisma.user.update({
       where: { id },
       data: updateUserDto,

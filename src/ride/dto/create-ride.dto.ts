@@ -1,27 +1,26 @@
 import { IsString, IsNotEmpty, IsInt, IsPositive, IsDateString, IsNumber, IsOptional } from 'class-validator';
 
 export class CreateRideDto {
-    @IsString()
-    @IsNotEmpty()
-    origin: string;
+  @IsString()
+  @IsNotEmpty()
+  origin: string;
 
-    @IsString()
-    @IsNotEmpty()
-    destination: string;
+  @IsString()
+  @IsNotEmpty()
+  destination: string;
 
-    @IsDateString()
-    date: string;
+  @IsDateString()
+  date: string;
 
-    @IsInt()
-    @IsPositive()
-    availableSeats: number;
+  @IsInt()
+  @IsPositive()
+  availableSeats: number;
 
-    @IsOptional()
-    @IsNumber()
-    @IsPositive()
-    price?: number;
+  @IsOptional()
+  @IsNumber()
+  @IsPositive()
+  price?: number;
 
-    @IsInt()
-    userId: number;
-
+  @IsInt()
+  userId: number;
 }

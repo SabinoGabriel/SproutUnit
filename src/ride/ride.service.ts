@@ -5,15 +5,15 @@ import { PrismaService } from '../prisma/prisma.service';
 
 @Injectable()
 export class RideService {
-  constructor (private prisma: PrismaService) {}
+  constructor(private prisma: PrismaService) {}
 
   create(createRideDto: CreateRideDto) {
-    const { date, ...restOfData } = createRideDto
+    const { date, ...restOfData } = createRideDto;
     return this.prisma.ride.create({
       data: {
         ...restOfData,
         date: new Date(date),
-        },
+      },
     });
   }
 
@@ -27,6 +27,12 @@ export class RideService {
     });
   }
 
+  findByUserId(userId: number) {
+    return this.prisma.ride.findMany({
+      where: { userId },
+    });
+  }
+
   update(id: number, updateRideDto: UpdateRideDto) {
     if (updateRideDto.date) {
       const { date, ...restOfData } = updateRideDto;
@@ -35,8 +41,8 @@ export class RideService {
         data: {
           ...restOfData,
           date: new Date(date),
-        }
-      })
+        },
+      });
     }
 
     return this.prisma.ride.update({
@@ -51,5 +57,3 @@ export class RideService {
     });
   }
 }
-  
-
